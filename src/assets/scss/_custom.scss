@@ -1,3 +1,10 @@
+.main-content{
+    max-width: 567px;
+    margin: auto;
+    @media only screen and (max-width: 425px) {
+        max-width: 100%;
+    }
+}
 input.form-control{
     border-radius: 8px;
     &:focus{
@@ -6,6 +13,9 @@ input.form-control{
     }
 }
 .navbar-with-logo{
+    min-height: 50px;
+}
+.navbar-with-text{
     min-height: 50px;
 }
 .register-type-tabs{
@@ -42,6 +52,26 @@ input.form-control{
         p{
             font-size: 14px;
             font-weight: 500;
+        }
+    }
+}
+.close-icon{
+    background: #e5e5e5;
+    position: absolute;
+    color: #6F6E73;
+    border-radius: 50%;
+    right: 10px;
+    border: none;
+}
+.otp-input{
+    input{
+        background-color: rgba(0, 0, 0, 0.03);
+        border-radius: 6px;
+        border: 1px solid #CFCFCF;
+        width: 42px !important;
+        height: 42px !important;
+        &:focus{
+            border: 2px solid #885FFF;
         }
     }
 }

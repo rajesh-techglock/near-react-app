@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Register from ".";
+import { usersWithOtp } from "../../DummyData/users";
 import { sendOtpOnEmail } from "../../redux/auth/action";
 import { IRegisterErrors, IRegisterValues } from "./RegisterInterface";
+import toastr from "toastr";
 
 const initialState = { email: "", phone: "" };
 
@@ -10,7 +12,7 @@ const RegisterComponent = (props) => {
   const [registerType, setRegisterType] = useState(1); // 1 for Email and 2 for phone
   const [errors, setErrors] = useState<IRegisterErrors>(initialState);
   const [values, setValues] = useState<IRegisterValues>(initialState);
-
+  const [otpScreen, setOtpScreen] = useState<boolean>(false);
   /**
    * Handle onChange event of login page input fields
    * @param event
@@ -60,8 +62,29 @@ const RegisterComponent = (props) => {
     if (!formValidate()) {
       return false;
     }
-    await props.sendOtpOnEmail(values);
+    let sendOtp: { email: string; phone: string; otp: string } = null;
+    if (registerType === 1) {
+      sendOtp = usersWithOtp.find((user) => user.email === values.email);
+    } else {
+      sendOtp = usersWithOtp.find((user) => user.phone === values.phone);
+    }
+    if (sendOtp) {
+      await props.sendOtpOnEmail(sendOtp);
+    } else {
+      toastr.error(
+        `This ${registerType === 1 ? "email" : "phone number"} already exist.`
+      );
+    }
   };
+
+  useEffect(() => {
+    if (props.setOtpDetail && props.complete) {
+      toastr.success(
+        `OTP sent on your ${registerType === 1 ? "email" : "phone number"}`
+      );
+      setOtpScreen(true);
+    }
+  }, [props, registerType]);
 
   useEffect(() => {
     setValues(initialState);
@@ -73,9 +96,11 @@ const RegisterComponent = (props) => {
       handleRegisterSubmit={handleRegisterSubmit}
       handleOnChange={handleOnChange}
       setRegisterType={setRegisterType}
+      setOtpScreen={setOtpScreen}
       registerType={registerType}
       errors={errors}
       values={values}
+      otpScreen={otpScreen}
     />
   );
 };

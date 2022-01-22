@@ -1,20 +1,26 @@
 import React from "react";
 import HeaderWithLogo from "../../Components/Common/HeaderWithLogo";
+import HeaderWithText from "../../Components/Common/HeaderWithText";
+import ConfirmOtpComponent from "../../Components/ConfirmOtp/ConfirmOtpComponent";
 import RegisterWithEmail from "../../Components/Register/RegisterWithEmail";
 import RegisterWithPhone from "../../Components/Register/RegisterWithPhone";
 import { IRegisterErrors, IRegisterValues } from "./RegisterInterface";
 interface IRegisterProp {
   handleOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   setRegisterType: (type: number) => void;
+  setOtpScreen: (type: boolean) => void;
   handleRegisterSubmit: () => void;
   registerType: number;
+  otpScreen: boolean;
   errors: IRegisterErrors;
   values: IRegisterValues;
 }
 const Register = ({
+  otpScreen,
   errors,
   values,
   registerType,
+  setOtpScreen,
   setRegisterType,
   handleOnChange,
   handleRegisterSubmit,
@@ -57,8 +63,8 @@ const Register = ({
           />
         )}
       </div>
-      {/* <div
-        className="modal d-block"
+      <div
+        className={`modal ${otpScreen ? "d-block" : ""}`}
         id="exampleModal"
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
@@ -66,21 +72,16 @@ const Register = ({
       >
         <div className="modal-dialog modal-fullscreen">
           <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title text-center" id="exampleModalLabel">
-                Modal title
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+            <HeaderWithText
+              heading="Verification"
+              setOtpScreen={setOtpScreen}
+            />
+            <div className="modal-body">
+              <ConfirmOtpComponent registerType={registerType} />
             </div>
-            <div className="modal-body"></div>
           </div>
         </div>
-      </div> */}
+      </div>
     </>
   );
 };

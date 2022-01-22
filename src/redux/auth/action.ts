@@ -1,8 +1,10 @@
 export const sendOtpOnEmail = (payload) => async (dispatch) => {
   dispatch({ type: "ACTION_START" });
   dispatch({
-    type: "ADD_EMAIL",
+    type: "SET_OTP",
     payload,
   });
-  dispatch({ type: "COMPLETE_ACTION" });
+  setTimeout(() => {
+    dispatch({ type: "COMPLETE_ACTION" });
+  }, 2000);
 };

@@ -1,9 +1,10 @@
 const InitialState = {
   users: [],
+  setOtpDetail: null,
   loading: false,
-  error: "",
-  success: false,
-  isLogin: false,
+  complete: false,
+  message: "",
+  error: false,
 };
 
 export const auth = (state = InitialState, action) => {
@@ -11,35 +12,26 @@ export const auth = (state = InitialState, action) => {
     case "ACTION_START":
       return {
         ...state,
-        data: {},
-        success: false,
-        error: "",
         loading: true,
-        isLogin: false,
       };
-    case "ADD_EMAIL":
+    case "SET_OTP":
       return {
         ...state,
-        data: action.payload,
-        success: false,
-        loading: true,
-        isLogin: true,
+        setOtpDetail: action.payload,
+        complete: true,
       };
     case "ERROR":
       return {
         ...state,
-        data: {},
-        error: action.payload,
-        success: false,
+        message: "",
+        error: true,
         loading: true,
-        isLogin: false,
       };
     case "COMPLETE_ACTION":
       return {
         ...state,
-        success: true,
         loading: false,
-        isLogin: false,
+        complete: false,
       };
     default:
       return state;
