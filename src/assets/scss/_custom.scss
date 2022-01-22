@@ -1,0 +1,47 @@
+input.form-control{
+    border-radius: 8px;
+    &:focus{
+        border: 2px solid $primary !important;
+        box-shadow: none;
+    }
+}
+.navbar-with-logo{
+    min-height: 50px;
+}
+.register-type-tabs{
+    .tab-btn{
+        font-size: 14px;
+        &:focus{
+            box-shadow: none;
+        }
+    }
+    .active{
+        border: 1px solid #BEBEC2;
+        background-color:  #FCFCFC;
+        border-radius: 10px;
+    }
+}
+.tab-content{
+    width: 80%;
+    margin: auto;
+    .email-form {
+        .continue-btn {
+            border-radius: 10px;
+        }
+        .term-condition-text{
+            font-size: 12px;
+            line-height: 16px;
+            text-align: center;
+            color: #6F6E73;
+            span{
+                color: #587BE0;
+            }
+        }
+    }
+    .already-have-account{
+        p{
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+}
