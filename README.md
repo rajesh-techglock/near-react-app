@@ -48,4 +48,4 @@ For registration screens you can use any of following dummy data
 ```
 If any other email or phone number is used then **already exists** error will be thrown.
 
-![Screenshot from mobile breakpoint](../Screenshot.png)
+![Screenshot from mobile breakpoint]('/rajesh-techglock/near-react-app/blob/main/Screenshot.png')
