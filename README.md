@@ -1,4 +1,4 @@
-# Projet Name
+# Project Name
 
 React Extension
 24 Hour Code Challenge
