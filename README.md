@@ -50,7 +50,7 @@ If any other email or phone number is used then **already exists** error will be
 
 To run test case (currently it is setup for Registration screens only)
 ```bash
-npm run test
+npm run test a
 ```
 
 ![Screenshot from mobile breakpoint]('/rajesh-techglock/near-react-app/blob/main/Screenshot.png')
